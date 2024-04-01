@@ -44,7 +44,29 @@ h1{
 
 /*// ANIMATION STYLES //*/
 
+.panels div.back{
+  
+  transform: rotateY(90deg) ;
+}
 
+.panels div.front{
+  position: absolute;
+}
+
+.panels li:hover div.front{
+  animation: twirl 0.3s ease-in forwards ;
+}
+.panels li:hover div.back{
+  animation: twirl 0.3s 0.2s ease-out forwards reverse;
+}
+
+@keyframes twirl {
+  0%{transform: rotateY(0deg);
+  }
+  100% {transform: rotateY(90deg);}
+  
+}
+ /* for these,we want the carDS TO FLIP when we hover on the front one to show the back one. we begin by hiding the back one behind the front one wth rotatY 90deg on the back and position absolute on the front. We thencreate a keyframes to start at 9 deg the befining and then rotate 90 on the Y axis. We then create the element to apply the keyframes whicg is the panels .dv for both front and back */
 
 
 

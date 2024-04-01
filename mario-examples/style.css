@@ -1,0 +1,131 @@
+/*// BASE STYLES //*/
+
+html, body{
+  height: 100%;
+  width:100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.grass, .sky, .road{
+  position: relative;
+}
+
+.sky{
+  height: 40%;
+  background: skyblue;
+}
+
+.grass{
+  height: 30%;
+  background: seagreen;
+}
+
+.road{
+  height: 30%;
+  background: dimgrey;
+  box-sizing: border-box;
+  border-top: 10px solid grey;
+  border-bottom: 10px solid grey;
+  width: 100%;
+}
+
+.lines{
+  box-sizing: border-box;
+  border: 5px dashed #fff;
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 45%;
+}
+
+/*// ELEMENTS TO ANIMATE //*/
+.mario{
+  position: absolute;
+  top: -40px;
+  left: 0px;
+  /* animation-name: drive;
+   /* this applies the keyframe 👆*/
+  /* animation-duration: 3s;
+  animation-fill-mode: both;
+  /* animation-delay: 2ms;   */
+  /* animation-iteration-count: infinite; */
+  /* animation-timing-function: cubic-bezier(0,.77,1,.28); */  
+ /* instead of all these we use the animation shrthand */
+ animation: drive 3s  both infinite linear,
+ jump 0.3s 1.2s linear;
+}
+
+
+/*// KEYFRAMES //* first give your keyframe a name outs is drive, metio the to state you want to work it from ie from and to then apply the name drive and set to the animation name in the element to animatee and then how long we want it to animate for, duration, 
+
+animation fill
+for animation fill mode,we can decide if the aimation should move forwards, backwards or both. Animation delay stats hpw long its how delay before the ani should start //
+
+//the animation fill tells the css what to do with aimatio whether to move forward, backward , one do nothing, and lastly both
+
+animation delay
+animation delay delays the animation before it begins
+it is muted so that we can repeat the animation using animation-iteration-count which can takea num like 3 for 3 timews. it is set to infnte so that the animation keeps running over and over
+/*  */
+/* animation-timing-function
+this controls the speed. by default it is set to ease, stary slow, gets fast and ends slo. You can change this to linear to be the same speed through out or ease-in or ease-in-out. We can also gve our own customised timing using cubic bezier. Ypu can check cubic beizer.com for it */
+
+@keyframes drive {
+  from{transform: translateX(-200px);}
+  to{transform: translateX(1000px);}
+}
+
+.luigi{
+  position: absolute;
+  top: 100px;
+  left: 0;
+  animation-name: drive;
+  animation-duration: 5s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+}
+
+
+
+
+/*  Animation direction
+to set luigi to move in reverse we dont need to set up new key frames but use the animation direction propery we give t its own animation name, animation duration, animation-fill-mode and then animation direction which takes in 4 values of normal. reverse, alternate and alternate reverse
+ */
+
+.cloud{
+  position: absolute;
+}
+/* cloud position absoulute makes one img to be on top of the other to fix this we use the nthchild 1 to grab the first one and 2 second one */
+
+ .cloud:nth-child(1){
+  width: 200px;
+  top: 120px;
+  opacity: 0.5;
+  animation: wind 80s linear infinite reverse;
+ }
+ .cloud:nth-child(2){
+  width: 300px;
+  top: 0;
+  animation: wind 50s linear infinite alternate-reverse;
+ }
+
+/* //to control thier movements we need to create akeyframe and give it a name */
+@keyframes wind{
+  from{left:-300px}
+  to{left:100%}
+}
+
+/* animaton shorthand
+ we then use animation shorthand neame wind then how long 8s then the timimg function linear and then infinite for iteration count and then reverse  if ypu would put the delay it has to come after the duration*/
+
+ /* chaing animation 
+ 'to chain two animation to one property you create another keyframe. in ths case wewant mario to jump onhis bike midway while drvng. so we crate a keyframe wth three state wgich take percentages of 0% for start, 50% for middle and 100 perecent for emd. we use thus instead of from and to. The top -4opx is where maro starts above. Then to chain the animation name we just put a comma to the first anmation and add thus second one check Mario above👆 
+ */
+
+@keyframes  jump {
+  0%{top: -40px;}
+  50% {top:-100px}
+  100%{top: -40px}
+}
